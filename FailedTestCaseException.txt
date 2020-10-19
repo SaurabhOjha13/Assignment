@@ -1,0 +1,19 @@
+package com.demoblaze.selenium.exception;
+
+public class FailedTestCaseException extends Exception {
+
+  private static final long serialVersionUID = 1L;
+  String message=null;
+
+ public FailedTestCaseException() 
+  { 
+    super();
+  }
+
+ public FailedTestCaseException(String message) 
+  { 
+    super(message);
+    this.message=message;
+  }
+
+}
