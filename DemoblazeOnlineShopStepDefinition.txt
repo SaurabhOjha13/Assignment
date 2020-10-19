@@ -1,0 +1,114 @@
+package com.demoblaze.selenium.steps;
+
+import cucumber.api.Scenario;
+import cucumber.api.java.After;
+import cucumber.api.java.Given;
+import cucumber.api.java.When;
+import cucumber.api.java.Then;
+import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import com.demoblaze.selenium.exception.FailedTestCaseException;
+import org.apache.log4j.Logger;
+
+
+public class DemoblazeOnlineShopStepDefinition implements BaseTest {
+
+   System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
+   WebdDriver driver = new ChromeDriver();
+   Logger log = Logger.getLogger("devpinoyLogger");
+   
+   @Given("^I navigate to URL \"([^\"]*)\"$")
+   public void navigateToUrl(String url) throws FailedTestCaseException{
+   try{
+	driver.get(url);
+     }
+   catch (FailedTestCaseException ex) {
+	throw new FailedTestCaseException("Failed to navigate");
+   }
+}
+
+
+   @When("^I will click on element having (.+) \"([^\"]*)\"$")
+   public void clickOnElement(String accessType, String accessName) throws FailedTestCaseException {
+   try{
+	clickObj.click(accessType, accessName);
+
+	}
+	catch (FailedTestCaseException ex) {
+	throw new FailedTestCaseException("Failed to click");
+   }
+}
+  
+  @Then("^I will accept the alert pop up$")
+  public void acceptAlert() throws FailedTestCaseException {
+   try{
+	driver.switchTo.alert.accept();
+
+	}
+	catch (FailedTestCaseException ex) {
+	throw new FailedTestCaseException("Failed to accept alert");
+   }
+}
+
+
+ @Then("^I will enter \"([^\"]*)\" into input field having (.+) \"([^\"]*)\"$")
+  public void enter(String text, String accessType, String accessName) throws FailedTestCaseException {
+   try{
+	inputObj.enterText(text, accessType, accessName);
+	}
+	catch (FailedTestCaseException ex) {
+	throw new FailedTestCaseException("Failed to enter text");
+   }
+}
+
+
+ @Then("^I will Capture the screenshot \"([^\"]*)\" and log purchase Id (.+) \"([^\"]*)\" and Amount (.+) \"([^\"]*)\"$")
+ public void captureScreenshot(String name, String accessTypePId, String accessNamePId, String accessTypeAmount, String accessNameAmount) throws FailedTestCaseException {
+   	log.debug("Getting the purchaseId");
+	String actualValuePurchaseId=input.getElementText(accessTypePId, accessNamePId);
+	System.out.println("Purchase Id is "+actualValuePurchaseId);
+	log.debug("Getting the Amount");
+	String actualValueAmountId=input.getElementText(accessTypeAmount, accessNameAmount);
+	System.out.println("Amount is "+actualValueAmountId);
+	TakesScreenshot ts =(TakesScreenshot driver);
+	File srcFile = ts.getScreenshotAs(OutputType.FILE);
+	try{
+		FileChannel sourceChannel = new FileInputStream(srcFile).getChannel();
+		File destination = new File(SCREENSHOT_LOCATION, name+".png");
+		FileChannel destinationChannel = new FileOutputStream(destination).getChannel();
+		destinationChannel.transferFrom(sourceChannel, 0, sourceChannel.size());
+	}
+	catch (IOException e) {
+	e.printStackTrace();
+   }
+}
+
+ @Then("^I will check the purchase amount of (.+) \"([^\"]*)\" with the expected amount \"([^\"]*)\"$")
+ public void checkPurchaseAmount(String accessType, String accessName, String amount) throws FailedTestCaseException {
+   try{
+	String actualValue=input.getElementText(accessType, accessName);
+	if (!actualValue.equals(amount))
+ 		throw new FailedTestCaseException("Text not Matched");
+	else
+		throw new FailedTestCaseException("Text Matched");
+	}
+	catch (FailedTestCaseException ex) {
+	throw new FailedTestCaseException("The amount is not available");
+   }
+}
+
+ @Then("^I wait for (.+) sec having property (.+)" \"([^\"]*)\"$")
+ public void dynamicWait(String duration, String accessType, String accessName) throws FailedTestCaseException {
+   try{
+	inputObj.waitForElementToDisplay(accessType, accessName, duration);
+	}
+	catch (FailedTestCaseException ex) {
+	throw new FailedTestCaseException("Failed to wait");
+   }
+}
+
+
+}
