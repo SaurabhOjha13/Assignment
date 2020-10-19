@@ -1,0 +1,21 @@
+package com.demoblaze.selenium;
+
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+
+public class ClickElementsMethods extends SelectElementByType {
+ public WebElement element =null;
+ 
+  public void click(String accessType, String accessName) throws FailedTestCaseException {
+  try{
+	element= wait.until(ExpectedConditions.presenceOfElementLocated(getElementByType(accessType, accessName)));
+	element.click();
+     }
+   catch (FailedTestCaseException ex) {
+	throw new FailedTestCaseException("Failed to navigate");
+   }
+}
+
+}
