@@ -1,0 +1,41 @@
+package com.demoblaze.selenium;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.By;WebDriver;
+
+public class InputMethods extends SelectElementByType {
+
+ public void enterText(String text, String accessType, String accessName) throws FailedTestCaseException {
+	try{
+		element= wait.until(ExpectedConditions.presenceOfElementLocated(getElementByType(accessType, accessName)));
+		driver.findElement(getElementByType(accessType, accessName).clear();
+		driver.findElement(getElementByType(accessType, accessName).sendKeys(text);
+     	}
+   	catch (FailedTestCaseException ex) {
+		throw new FailedTestCaseException("Failed to enter input");
+   }
+}
+
+public String void getElementText(String accessType, String accessName) throws FailedTestCaseException {
+	try{
+		element= wait.until(ExpectedConditions.presenceOfElementLocated(getElementByType(accessType, accessName)));
+		return element.getText();
+     	}
+   	catch (FailedTestCaseException ex) {
+		throw new FailedTestCaseException("Failed to get the text");
+   }
+}
+
+public void waitForElementToDisplay(String accessType, String accessName, String duration)
+	try{
+		By byEle = getElementByType(accessType, accessName);
+		WebDriverWait wait = (new WebDriverWait(driver,Integer.parseInt(duration)));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(byEle));
+     	}
+   	catch (FailedTestCaseException ex) {
+		throw new FailedTestCaseException("Failed to get the text");
+   }
+}
+}
+
