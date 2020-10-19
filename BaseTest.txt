@@ -1,0 +1,10 @@
+package com.demoblaze.selenium;
+
+import com.demoblaze.selenium.exception.FailedTestCaseException;
+
+
+public interface BaseTest {
+    InputMethods inputobj = new InputMethods();
+    ClickElementsMethods clickObj = new ClickElementMethods();
+    
+}
