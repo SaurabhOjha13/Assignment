@@ -1,0 +1,49 @@
+Feature: Demo Online Shop
+ @DemoOnlineShop
+
+ Scenario Outline: Implementing the following Web automated checks over our DEMO ONLINE SHOP
+ Given I navigate to URL "<Url>"
+ When I will click on element having linkText "Phones"     
+ When I will click on element having linkText "Laptops"	   
+ When I will click on element having linkText "Monitors"	  
+ When I will click on element having linkText "Laptops"
+ Then I wait for "<Time>" sec having property linkText "Sony vaio i5"
+ Then I will click on element having linkText "Sony vaio i5"
+ Then I wait for "<Time>" sec having property linkText "Add to cart" 
+ Then I will click on element having linkText "Add to cart"     
+ Then I will accept the alert pop up
+ Then I wait for "<Time>" sec having property xpath "//*[@id="navbarExample"]/ul/li[1]/a"
+ When I will click on element having xpath "//*[@id="navbarExample"]/ul/li[1]/a"
+ Then I wait for "<Time>" sec having property linkText "Laptops"
+ When I will click on element having linkText "Laptops"
+ Then I wait for "<Time>" sec having property linkText "Sony vaio i7"
+ Then I will click on element having linkText "Sony vaio i7" 
+ Then I wait for "<Time>" sec having property linkText "Add to cart" 
+ Then I will click on element having linkText "Add to cart"
+ Then I will accept the alert pop up 
+ Then I wait for "<Time>" sec having property id "cartur"
+ When I will click on element having id "cartur"  
+ Then I wait for "<Time>" sec having property xpath "//*[@id="tbodyid"]/tr[2]/td[4]/a"   
+ Then I will click on element having xpath "//*[@id="tbodyid"]/tr[2]/td[4]/a"	
+ Then I wait for "<Time>" sec having property xpath "//*[@id="page-wrapper"]/div/div[2]/button"   
+ When I will click on element having xpath "//*[@id="page-wrapper"]/div/div[2]/button"
+ Then I wait for "<Time>" sec having property id "name"   
+ Then I will enter "<Name>" into input field having id "name"    
+ Then I will enter "<Country>" into input field having id "country"     
+ Then I will enter "<City>" into input field having id "city"     
+ Then I will enter "<CreditCard>" into input field having id "card"    
+ Then I will enter "<Month>" into input field having id "month"     
+ Then I will enter "<Year>" into input field having id "year"  
+ Then I will click on element having xpath "//*[@id="orderModal"]/div/div/div[3]/button[2]" 
+ Then I wait for "<Time>" sec having property xpath "/html/body/div[10]/p/text()[1]"  
+ Then I will Capture the screenshot "<Name>" and log purchase Id xpath "/html/body/div[10]/p/text()[1]" and Amount xpath "/html/body/div[10]/p/text()[2]"
+ Then I will check the purchase amount of xpath "/html/body/div[10]/p/text()[2]" with the expected amount <Amount>
+ Then I will click on element having class "confirm btn btn-lg btn-primary"      
+ Examples:
+ |Url | Name| Country | City | CreditCard | Month | Year | Amount | Name | Time |
+ |https://www.demoblaze.com/index.html| Saurabh | India | Delhi | 4255252525522522 | Oct | 2020 | 790 USD |src/output/Screenshot| 10 |
+  
+ 
+
+
+
